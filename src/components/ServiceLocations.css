@@ -1,0 +1,35 @@
+.main-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30vh;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: purple solid 3px;
+    width: 30vw;
+}
+
+.search-form > label {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: blue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search-form > input {
+    width: 50px;
+}
+
+.search-form > button {
+    margin-top: 15px;
+    width: 200px;
+    border: red solid 2px;
+    border-radius: 3px;
+    background-color: lightyellow;
+}

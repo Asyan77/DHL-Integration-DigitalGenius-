@@ -1,0 +1,56 @@
+.tracking-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.header > input {
+    font-size: 15px;
+    margin-left: 10px;
+    height: 28px;
+    border: purple solid 2px;
+}
+
+.header > button {
+    margin-left: 10px;
+    border: red solid 2px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 8px;
+    background-color: rgb(241, 243, 143);
+    color: black;
+    cursor: pointer;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.parcel-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    width: 35vw;
+    border-radius: 5px;
+    border: red solid 3px;
+    background-color: rgb(241, 243, 143);
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.event-details {
+    margin-top: 10px;
+}
