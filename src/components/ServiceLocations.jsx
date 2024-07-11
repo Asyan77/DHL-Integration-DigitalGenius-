@@ -43,7 +43,7 @@ function ServiceLocations () {
 
  return (
     <div className='main-page'>
-        <div>Need to ship? Find the nearest DHL to you!</div>
+        <div className='header'>Need to ship? Find the nearest DHL service point</div>
         <form className='search-form' action="">
           <label htmlFor="country">Two-letter country code</label>
           <input type="text" name='country' value={countryCode} placeholder='TW' onChange={handleCountryChange} required/>
