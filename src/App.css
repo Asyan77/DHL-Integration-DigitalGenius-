@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.header > button {
+    margin-left: 10px;
+    border: purple solid 2px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 8px;
+    background-color: rgb(220, 201, 238);
+    color: black;
+}

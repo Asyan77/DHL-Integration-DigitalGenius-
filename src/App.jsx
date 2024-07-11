@@ -1,42 +1,58 @@
-import { useEffect } from "react"
+
+import { useEffect, useState } from "react"
+import './App.css'
 
 function App() {
-
-  const url = 'https://api-eu.dhl.com/track/shipments'
-  const apiKey = 'mu3CWB5zYllxwb4it8TWFe1FNdpFBnGV'
-  const apiSecretKey = 'oVy0tFitrc56rjhn'
-  // const trackingID = '7777777770'
-  const trackingID = '8264715546'
+  const [trackingID, setTrackingID] = useState(null);
+  const apiKey1 = 'mu3CWB5zYllxwb4it8TWFe1FNdpFBnGV';
+  const apiKey2 = 'kB5vFGIwPb89hewzUDzmvbJPDLCRyByA';
+  // const trackingID1 = '7777777770'
+  // const trackingID2 = '8264715546'
   let trackingInfo;
-
-
+  
+  
+  
 
 
  const grabTrackingDetails = async () => {
-    const res = await fetch(`https://api-eu.dhl.com/track/shipments?trackingNumber=${trackingID}`, {
+    const res = await fetch('https://api-eu.dhl.com/track/shipments?trackingNumber=7777777770', {
       method: 'GET',
       headers: {
-        'DHL-API-Key': apiKey,
-        'Content-Type' : 'application/json',
-        'Authorization' : `Bearer ${apiSecretKey}`
+        'DHL-API-Key': apiKey2
       }
     })
-
     if (res.ok) {
-      console.log(res)
-      trackingInfo = await res.json()
-      return trackingInfo
+      trackingInfo = await res.json();
+      console.log(trackingInfo);
+    } else {
+      console.log(res);
     }
   }
 
   useEffect(()=> {
-    grabTrackingDetails()
-  },[grabTrackingDetails])
+    grabTrackingDetails(trackingID)
+  },[trackingID])
+
+  const updateToTrackingId1 = () => {
+    if (trackingID !== trackingID1 ) {
+      setTrackingID(trackingID1)
+    }
+  }
+
+  const updateToTrackingId2 = () => {
+    if (trackingID !== trackingID2 ) {
+      setTrackingID(trackingID2)
+    }
+  }
 
   return (
-    <div>
+    <>
+      <div className="header"> Select the tracking ID you would like to view: 
+        <button onClick={updateToTrackingId1}>7777777770</button>
+        <button onClick={updateToTrackingId2}>8264715546</button>
+      </div>
       {trackingInfo}
-    </div>
+    </>
 
   )
 }
