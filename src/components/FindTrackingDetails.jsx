@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import './FindTrackingDetails.css'
 
 function FindTrackingDetails () {
@@ -11,7 +11,6 @@ function FindTrackingDetails () {
     const apiKey2 = 'kB5vFGIwPb89hewzUDzmvbJPDLCRyByA';
     const[trackingID, setTrackingID] = useState("");
     let trackingInfo;
-    let unsuccessful;
     const demo1 = "7777777770"
     const demo2 = 8264715546
     const defaultID = {
@@ -204,12 +203,11 @@ function FindTrackingDetails () {
     }
     const latestEvent = defaultID.shipments[0].events[0]
 
-    console.log("demo status", demoStatus)
-    console.log("search status", searchStatus)
-    console.log("parcel found", parcelFound)
-    // console.log("tempID", tempTrackingID)
-    console.log('trackingID',trackingID)
-    console.log("-------------------------")
+    // console.log("demo status", demoStatus)
+    // console.log("search status", searchStatus)
+    // console.log("parcel found", parcelFound)
+    // console.log('trackingID',trackingID)
+    // console.log("-------------------------")
   
    const grabTrackingDetails = async () => {
     console.log("where??")
@@ -225,14 +223,11 @@ function FindTrackingDetails () {
         setParcelFound(true)
       } else {
         setParcelFound(false)
-        unsuccessful = "Sorry, no parcel found :("
       }
     }
   
-    useEffect(()=> {
-      
-      
-    },[trackingID, demoStatus, searchStatus, parcelFound ])
+    // useEffect(()=> {
+    // },[trackingID, demoStatus, searchStatus, parcelFound ])
   
     const handleTrackingIdChange = (e) => {
      setTempTrackingID(e.target.value)
@@ -283,7 +278,7 @@ function FindTrackingDetails () {
         </div>
         {demoStatus ? // if the demo buttons are clicked it displays the latest status for those
         <>
-          <div className="title">Here's the lastest details for ID #{trackingID}</div>
+          <div className="title">Here are the lastest details for ID #{trackingID}</div>
           <div className="parcel-details">
             <div>Status: {latestEvent.status}</div>
             <div className="event-details">Shipping address: {latestEvent.location.address.addressLocality} {latestEvent.location.address.postalCode}</div>
@@ -292,7 +287,7 @@ function FindTrackingDetails () {
         </> : null}
         {searchStatus && parcelFound ? // if user enters in a tracking ID and it is found, it should display the latest status 
         <>
-           <div className="title">Here's the lastest details for {trackingID}</div>
+           <div className="title">Here are the lastest details for ID #{trackingID}</div>
           <div className="parcel-details">
             <div>Status: {trackingInfo.status}</div>
             <div className="event-details">Shipping address: {trackingInfo.location.address.addressLocality} {trackingInfo.location.address.postalCode}</div>
