@@ -9,7 +9,7 @@ function FindTrackingDetails () {
     const [parcelFound, setParcelFound] = useState(false)
     const [tempTrackingID, setTempTrackingID] = useState("");
     const apiKey2 = 'kB5vFGIwPb89hewzUDzmvbJPDLCRyByA';
-    let trackingID;
+    const[trackingID, setTrackingID] = useState("");
     let trackingInfo;
     let unsuccessful;
     const demo1 = "7777777770"
@@ -203,6 +203,13 @@ function FindTrackingDetails () {
       ]
     }
     const latestEvent = defaultID.shipments[0].events[0]
+
+    console.log("demo status", demoStatus)
+    console.log("search status", searchStatus)
+    console.log("parcel found", parcelFound)
+    // console.log("tempID", tempTrackingID)
+    console.log('trackingID',trackingID)
+    console.log("-------------------------")
   
    const grabTrackingDetails = async () => {
     console.log("where??")
@@ -224,7 +231,8 @@ function FindTrackingDetails () {
   
     useEffect(()=> {
       
-    },[trackingID])
+      
+    },[trackingID, demoStatus, searchStatus, parcelFound ])
   
     const handleTrackingIdChange = (e) => {
      setTempTrackingID(e.target.value)
@@ -233,42 +241,56 @@ function FindTrackingDetails () {
     const handleSearch = () => {
       setDemoStatus(false)
       setSearchStatus(true)
-      trackingID = tempTrackingID
+      setTrackingID(tempTrackingID)
+      setTempTrackingID("")
       grabTrackingDetails()
     }
 
     const handleDemoSearch1 = () => {
+      // setParcelFound(false)
       setDemoStatus(true)
-      trackingID = demo1
-      console.log('here', trackingID)
+      setSearchStatus(false)
+      setTrackingID(demo1)
     }
 
     const handleDemoSearch2 = () => {
+      // setParcelFound(false)
+      setSearchStatus(false)
       setDemoStatus(true)
-      trackingID = demo2
-      console.log("there", trackingID)
+      setTrackingID(demo2)
     }
+
+    const handleClearAll = () => {
+     setDemoStatus(false)
+     setParcelFound(false)
+     setSearchStatus(false)
+     setTempTrackingID("")
+     setTrackingID("")
+    }
+
+
 
   
   
     return (
       <div className="tracking-page">
         <div className="header"> Get the latest update on your parcel: 
-          <input type="text" value={trackingID} placeholder="Enter your tracking ID" onChange={handleTrackingIdChange} />
+          <input type="text" value={tempTrackingID} placeholder="Enter tracking ID" onChange={handleTrackingIdChange} />
           <button onClick={handleSearch}>Search</button>
           <button onClick={handleDemoSearch1} >Demo Search #1</button>
           <button onClick={handleDemoSearch2}>Demo Search #2</button>
+          <button onClick={handleClearAll}>Clear All</button>
         </div>
-        {demoStatus ? 
+        {demoStatus ? // if the demo buttons are clicked it displays the latest status for those
         <>
-          <div className="title">Here's the lastest details for {trackingID}</div>
+          <div className="title">Here's the lastest details for ID #{trackingID}</div>
           <div className="parcel-details">
             <div>Status: {latestEvent.status}</div>
             <div className="event-details">Shipping address: {latestEvent.location.address.addressLocality} {latestEvent.location.address.postalCode}</div>
             <div className="event-details">{latestEvent.status} as of {latestEvent.timestamp}</div>
           </div>
         </> : null}
-        {searchStatus && parcelFound ? 
+        {searchStatus && parcelFound ? // if user enters in a tracking ID and it is found, it should display the latest status 
         <>
            <div className="title">Here's the lastest details for {trackingID}</div>
           <div className="parcel-details">
@@ -277,10 +299,12 @@ function FindTrackingDetails () {
             <div className="event-details">{trackingInfo.status} as of {trackingInfo.timestamp}</div>
           </div>
         </> : null} 
-        {searchStatus ? null : 
-          <>
-          <div>{unsuccessful}</div>
-          </>}
+        {searchStatus && !parcelFound ?
+        <>
+          <div className="unsuccessful-search"> Sorry, no parcel found for ID #{trackingID} 😭</div>  
+        </>
+        : null } 
+  
 
       </div>
          

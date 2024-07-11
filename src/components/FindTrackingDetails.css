@@ -34,7 +34,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 27px;
 }
 
 .parcel-details {
@@ -53,4 +53,9 @@
 
 .event-details {
     margin-top: 10px;
+}
+
+.unsuccessful-search {
+    margin-top: 30px;
+    font-size: 27px;
 }
