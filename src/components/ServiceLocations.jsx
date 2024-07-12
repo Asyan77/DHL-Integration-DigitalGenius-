@@ -98,7 +98,7 @@ function ServiceLocations () {
 
         {!successfulSearch ? 
         <>
-        <div >No locations found, try again</div>
+        <div className='list-title' >No locations found, try again</div>
         </>
         : null}
     </div>
