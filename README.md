@@ -9,3 +9,7 @@ This demo has two main functions:
 After cloning this repo, make sure to run `npm install`. 
 To run the app, type `npm run dev` in the root directory.
 
+
+## Notes
+
+Make sure to properly capitalize the city you're searching for! 
