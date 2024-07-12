@@ -12,7 +12,7 @@ function ServiceLocations () {
     const [selectedServiceType, setSelectedServiceType] = useState("");
     const [searchStatus, setSearchStatus] = useState(false);
     const [locationList, setLocationList] = useState({});
-    const [successfulSearch, setSuccessfulSearch] = useState(false);
+    const [successfulSearch, setSuccessfulSearch] = useState(1);
 
 
     const searchByCountry = async () => {
@@ -66,12 +66,13 @@ function ServiceLocations () {
 
     const handleClearResults = () => {
         setSearchStatus(false);
+        setSuccessfulSearch(1)
         
     }
 
  return (
     <div className='main-page'>
-        <div className='header'>Need to ship? Find the nearest DHL service point</div>
+        <div className='header'>Find the nearest DHL Service Point Locations</div>
         <form className='search-form' onSubmit={handleSubmit} action="">
           <label htmlFor="country">Two-letter country code</label>
           <input type="text" name='country' value={countryCode} placeholder='TW' onChange={handleCountryChange} required/>
@@ -87,13 +88,15 @@ function ServiceLocations () {
           </select>
           <label htmlFor="radius"> Radius in meters (optional - max of 2500)</label>
           <input type="number" name='radius' value={radius} placeholder='50' onChange={handleRadiusChange} max='2500'/>
-          <button type='submit'>Find Service Locations</button>  
-          <button onClick={handleClearResults}>Clear Results</button>
+          <button type='submit'>Find</button>  
 
         </form>
 
         {searchStatus && successfulSearch ?
-        <LocationDetails details={locationList}/>
+        <>
+            <button className='clear-btn' onClick={handleClearResults}>Clear Results</button>
+            <LocationDetails details={locationList}/>
+        </>
         : null }
 
         {!successfulSearch ? 
