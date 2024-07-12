@@ -4,15 +4,15 @@ import './FindTrackingDetails.css'
 
 function FindTrackingDetails () {
   // const apiKey1 = 'mu3CWB5zYllxwb4it8TWFe1FNdpFBnGV';
-    const [demoStatus, setDemoStatus] =useState(false)
-    const [searchStatus, setSearchStatus] = useState(false)
-    const [parcelFound, setParcelFound] = useState(false)
+    const [demoStatus, setDemoStatus] =useState(false);
+    const [searchStatus, setSearchStatus] = useState(false);
+    const [parcelFound, setParcelFound] = useState(false);
     const [tempTrackingID, setTempTrackingID] = useState("");
     const apiKey2 = 'kB5vFGIwPb89hewzUDzmvbJPDLCRyByA';
     const[trackingID, setTrackingID] = useState("");
     let trackingInfo;
-    const demo1 = "7777777770"
-    const demo2 = 8264715546
+    const demo1 = "7777777770";
+    const demo2 = 8264715546;
     const defaultID = {
       "shipments": [
         {
@@ -201,16 +201,9 @@ function FindTrackingDetails () {
         }
       ]
     }
-    const latestEvent = defaultID.shipments[0].events[0]
-
-    // console.log("demo status", demoStatus)
-    // console.log("search status", searchStatus)
-    // console.log("parcel found", parcelFound)
-    // console.log('trackingID',trackingID)
-    // console.log("-------------------------")
+    const latestEvent = defaultID.shipments[0].events[0];
   
    const grabTrackingDetails = async () => {
-    console.log("where??")
       const res = await fetch(`https://api-eu.dhl.com/track/shipments?trackingNumber=${trackingID}&language=en&offset=0&limit=5`, {
         method: 'GET',
         headers: {
@@ -220,9 +213,9 @@ function FindTrackingDetails () {
       })
       if (res.ok) {
         trackingInfo = await res.json();
-        setParcelFound(true)
+        setParcelFound(true);
       } else {
-        setParcelFound(false)
+        setParcelFound(false);
       }
     }
   
@@ -230,37 +223,37 @@ function FindTrackingDetails () {
     // },[trackingID, demoStatus, searchStatus, parcelFound ])
   
     const handleTrackingIdChange = (e) => {
-     setTempTrackingID(e.target.value)
+     setTempTrackingID(e.target.value);
     }
 
     const handleSearch = () => {
-      setDemoStatus(false)
-      setSearchStatus(true)
-      setTrackingID(tempTrackingID)
-      setTempTrackingID("")
-      grabTrackingDetails()
+      setDemoStatus(false);
+      setSearchStatus(true);
+      setTrackingID(tempTrackingID);
+      setTempTrackingID("");
+      grabTrackingDetails();
     }
 
     const handleDemoSearch1 = () => {
-      // setParcelFound(false)
-      setDemoStatus(true)
-      setSearchStatus(false)
-      setTrackingID(demo1)
+      // setParcelFound(false);
+      setDemoStatus(true);
+      setSearchStatus(false);
+      setTrackingID(demo1);
     }
 
     const handleDemoSearch2 = () => {
-      // setParcelFound(false)
-      setSearchStatus(false)
-      setDemoStatus(true)
-      setTrackingID(demo2)
+      // setParcelFound(false);
+      setSearchStatus(false);
+      setDemoStatus(true);
+      setTrackingID(demo2);
     }
 
     const handleClearAll = () => {
-     setDemoStatus(false)
-     setParcelFound(false)
-     setSearchStatus(false)
-     setTempTrackingID("")
-     setTrackingID("")
+     setDemoStatus(false);
+     setParcelFound(false);
+     setSearchStatus(false);
+     setTempTrackingID("");
+     setTrackingID("");
     }
 
   

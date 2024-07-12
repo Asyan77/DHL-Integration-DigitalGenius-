@@ -7,11 +7,12 @@ function ServiceLocations () {
     const apiKey2 = 'kB5vFGIwPb89hewzUDzmvbJPDLCRyByA';
     const options = {method: 'GET', headers: {'DHL-API-Key': apiKey2}};
     const [countryCode, setCountryCode] = useState("");
-    const [city, setCity] = useState("")
+    const [city, setCity] = useState("");
     const [radius, setRadius] = useState("");
     const [selectedServiceType, setSelectedServiceType] = useState("");
-    const [searchStatus, setSearchStatus] = useState(false)
-    const [locationList, setLocationList] = useState({})
+    const [searchStatus, setSearchStatus] = useState(false);
+    const [locationList, setLocationList] = useState({});
+    const [successfulSearch, setSuccessfulSearch] = useState(false);
 
 
     const searchByCountry = async () => {
@@ -19,12 +20,15 @@ function ServiceLocations () {
         if (res.ok) {
             const temp = await res.json();
             setSearchStatus(true);
+            setSuccessfulSearch(true);
             setLocationList(temp);
             setCity("");
             setCountryCode("");
             setRadius("");
-            setSelectedServiceType("")
-            }
+            setSelectedServiceType("");
+        } else {
+            setSuccessfulSearch(false);
+        }
             
         }
     // const editCityName = () => {
@@ -37,8 +41,6 @@ function ServiceLocations () {
     //         })
     //     }
     // }
-
-    console.log(countryCode)
 
     const handleCountryChange = (e)=> {
         setCountryCode(e.target.value);
@@ -59,11 +61,12 @@ function ServiceLocations () {
     const handleSubmit = (e) => {
         e.preventDefault();
         // editCityName(city)
-        searchByCountry()
+        searchByCountry();
     }
 
     const handleClearResults = () => {
-        setSearchStatus(false)
+        setSearchStatus(false);
+        
     }
 
  return (
@@ -89,9 +92,15 @@ function ServiceLocations () {
 
         </form>
 
-        {searchStatus ?
+        {searchStatus && successfulSearch ?
         <LocationDetails details={locationList}/>
         : null }
+
+        {!successfulSearch ? 
+        <>
+        <div >No locations found, try again</div>
+        </>
+        : null}
     </div>
  )
 }
