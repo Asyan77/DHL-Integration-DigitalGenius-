@@ -19,18 +19,21 @@ function ServiceLocations () {
        const res = await fetch(`https://api.dhl.com/location-finder/v1/find-by-address?countryCode=${countryCode.toUpperCase()}&addressLocality=${city}&providerType=express&locationType=servicepoint&serviceType=${selectedServiceType}&limit=20&hideClosedLocations=false`, options)
         if (res.ok) {
             const temp = await res.json();
-            setSearchStatus(true);
-            setSuccessfulSearch(true);
-            setLocationList(temp);
-            setCity("");
-            setCountryCode("");
-            setRadius("");
-            setSelectedServiceType("");
+            if (temp.locations.length === 0) {
+                setSuccessfulSearch(false);
+            } else {
+                setSearchStatus(true);
+                setSuccessfulSearch(true);
+                setLocationList(temp);
+                setCity("");
+                setCountryCode("");
+                setRadius("");
+                setSelectedServiceType("");
+            }
         } else {
             setSuccessfulSearch(false);
         }
-            
-        }
+    }
     // const editCityName = () => {
     //     let words = city.split(" ")
     //     if (words.length === 1) {

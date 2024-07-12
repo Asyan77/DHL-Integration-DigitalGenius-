@@ -10,6 +10,8 @@
     align-items: center;
     font-size: 30px;
     margin-top: 20px;
+    /* border: green solid 3px; */
+    min-width: 1100px;
 }
 
 .header > input {
@@ -44,6 +46,7 @@
     align-items: center;
     height: 20vh;
     width: 35vw;
+    min-width: 400px;
     border-radius: 5px;
     border: red solid 3px;
     background-color: rgb(241, 243, 143);

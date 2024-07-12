@@ -13,6 +13,7 @@
     align-items: center;
     border: purple solid 3px;
     width: 30vw;
+    min-width: 400px;
     margin-top: 20px;
     /* height: 30vh; */
     /* margin-bottom: 10vh; */
