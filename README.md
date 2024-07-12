@@ -1,7 +1,7 @@
-# App Academy React Vite Template
+# Ashley's DHL API demo
 
-This repo contains a basic Vite React template configured for use in App Academy
-projects.
+This demo has two main functions: 
+- Get the latest 
 
 ## How to clone
 

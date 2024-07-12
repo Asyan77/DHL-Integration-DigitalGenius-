@@ -263,9 +263,6 @@ function FindTrackingDetails () {
      setTrackingID("")
     }
 
-
-
-  
   
     return (
       <div className="tracking-page">
@@ -294,18 +291,12 @@ function FindTrackingDetails () {
             <div className="event-details">{trackingInfo.status} as of {trackingInfo.timestamp}</div>
           </div>
         </> : null} 
-        {searchStatus && !parcelFound ?
+        {searchStatus && !parcelFound ? // if a user searches but nothing is found
         <>
           <div className="unsuccessful-search"> Sorry, no parcel found for ID #{trackingID} 😭</div>  
         </>
         : null } 
-  
-
       </div>
-         
-         
-  
-    
   
     )
 }

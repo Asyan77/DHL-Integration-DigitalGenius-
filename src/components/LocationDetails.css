@@ -1,0 +1,33 @@
+.list-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.store-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: pink 3px solid; */
+}
+
+.single-store {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    /* border: greenyellow solid 3px; */
+}
+
+.store-name {
+    margin-bottom: 7px;
+    color: red;
+}
+
+.store-address {
+    margin-bottom: 2px;
+}
